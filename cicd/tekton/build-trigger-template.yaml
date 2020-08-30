@@ -15,13 +15,18 @@ spec:
           - name: shared-workspace
             persistentvolumeclaim:
               claimName: workspace-pvc
+          - name: shared-ops-workspace
+            persistentvolumeclaim:
+              claimName: workspace-pvc
         params:
-          - name: image
-            value: $(params.IMAGE)
           - name: repo-url
             value: $(params.REPO_URL)
           - name: revision
             value: $(params.REVISION)
+          - name: github-token-secret
+            value: github-token
+          - name: github-token-secret-key
+            value: GITHUB_TOKEN
         serviceAccountName: build-bot
   params:
     - name: REPO_URL
